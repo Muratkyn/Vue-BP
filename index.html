@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1
+        :style="{ backgroundColor: message === 'Hello Vue!' ? 'red' : 'green' }"
+      >
+        {{ message }}
+      </h1>
+      <button @click="toggleMessage">Click</button>
+      <button @click="getName()" :disabled="isDisabled">Add</button>
+      <p>{{name}}</p>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "Hello Vue!",
+            isDisabled: true,
+            name: "",
+          };
+        },
+        methods: {
+          toggleMessage() {
+            this.message =
+              this.message === "Hello Vue!" ? "Bye Vue!" : "Hello Vue!";
+
+            this.isDisabled = !this.isDisabled;
+            this.name = "";
+          },
+          getName() {
+            this.name = "My name is Murat!";
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
