@@ -8,11 +8,12 @@
   </head>
   <body>
     <div id="app">
-      <h1 :style="{ color: message === 'Hello Vue!' ? 'red' : 'green' }">
+      <p v-html="title"></p>
+      <h2 :style="{ color: message === 'Hello Vue!' ? 'red' : 'green' }">
         {{ message }}
-      </h1>
+      </h2>
       <button @click="toggleMessage">Click</button>
-      <button @click="getName()" :disabled="isDisabled">Add</button>
+      <button @click="getName()" :disabled="isDisabled">See name</button>
       <p>{{name}}</p>
 
       <div>
@@ -22,6 +23,8 @@
         <ul>
           <li v-for="todo of todos">{{todo}}</li>
         </ul>
+        <a v-bind:href="link">Click to Link</a>
+        <p>Short syntax <a :href="link">Link</a></p>
       </div>
     </div>
 
@@ -29,11 +32,13 @@
       const app = Vue.createApp({
         data() {
           return {
+            title: "<h1>Vue Best Practises</h1>",
             message: "Hello Vue!",
             isDisabled: true,
             name: "",
             todos: [],
             todo: "",
+            link: "https://www.google.com",
           };
         },
         methods: {
