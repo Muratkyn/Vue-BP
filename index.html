@@ -8,15 +8,23 @@
   </head>
   <body>
     <div id="app">
-      <h1
-        :style="{ backgroundColor: message === 'Hello Vue!' ? 'red' : 'green' }"
-      >
+      <h1 :style="{ color: message === 'Hello Vue!' ? 'red' : 'green' }">
         {{ message }}
       </h1>
       <button @click="toggleMessage">Click</button>
       <button @click="getName()" :disabled="isDisabled">Add</button>
       <p>{{name}}</p>
+
+      <div>
+        <label for="todo">TODO:</label>
+        <input type="text" v-model="todo" />
+        <button @click="addTodo" :disabled=" todo === '' ">Add</button>
+        <ul>
+          <li v-for="todo of todos">{{todo}}</li>
+        </ul>
+      </div>
     </div>
+
     <script>
       const app = Vue.createApp({
         data() {
@@ -24,6 +32,8 @@
             message: "Hello Vue!",
             isDisabled: true,
             name: "",
+            todos: [],
+            todo: "",
           };
         },
         methods: {
@@ -36,6 +46,10 @@
           },
           getName() {
             this.name = "My name is Murat!";
+          },
+          addTodo() {
+            this.todos.push(this.todo);
+            this.todo = "";
           },
         },
       });
