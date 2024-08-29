@@ -26,6 +26,7 @@
         <a v-bind:href="link">Click to Link</a>
         <p>Short syntax <a :href="link">Link</a></p>
       </div>
+      <new-component></new-component>
     </div>
 
     <script>
@@ -59,7 +60,22 @@
         },
       });
 
+      app.component("new-component", {
+        template: `
+        <h1> Hello: {{name}}</h1>
+        `,
+        data() {
+          return {
+            name: "murat",
+          };
+        },
+      });
+
       app.mount("#app");
+
+      // setTimeout(() => {
+      //   app.unmount("#app");
+      // }, 3000);
     </script>
   </body>
 </html>
